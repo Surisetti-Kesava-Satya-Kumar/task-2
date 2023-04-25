@@ -1,0 +1,25 @@
+name: coverage
+on:
+  push:
+    branches:
+      - main
+jobs:
+  test-and-cover:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+
+      - run: npm ci
+      - run: npm test
+      - run: git version
+
+      - uses: ./
+        with:
+          token: ${{ secrets.CODECLIMATE_TOKEN }}
+          verbose: true
+          files: ${{github.workspace}}/coverage/lcov.info:lcov
