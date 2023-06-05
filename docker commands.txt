@@ -1,0 +1,28 @@
+-images
+docker image ls
+docker pull inginx:latest
+docker ps
+- containers/volumes/network
+................docker run -itd --name=satya ubuntu:latest -v satya:/tmp/data --network=172.168.10.1 -p 8080:80
+................docker attach id
+................docker network ls
+................docker volume ls
+................docker inspect id
+................docker volume create satya
+................docker commit id name-of-push
+................docker push name-of-push
+-Dockerfile
+docker build Dockerfile .
+cmd = override
+entrypoint = dont override
+- Docker compose - next level of dockerfile and only for developers
+-Docker swarm
+mostly for orchestration and replication 
+there are masters and memebers
+docker swarm init
+docker node ls
+docker service create --name=satya nginx
+docker service ls
+docker service update id --replicas=4
+
+
